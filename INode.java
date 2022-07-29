@@ -1,4 +1,4 @@
-package com.bridgelab.hashtableprograms;
+package ocm.bridgelab.hashtableprouc2;
 
 public interface INode<K> {
 	K getKey();
@@ -9,4 +9,5 @@ public interface INode<K> {
 
 	void setNext(INode<K> next);
 
+	
 }
