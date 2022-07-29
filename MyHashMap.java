@@ -1,4 +1,4 @@
-package ocm.bridgelab.hashtableprouc2;
+package com.bridgelab.hashtableprouc3;
 import java.util.ArrayList;
 
 public class MyHashMap<K, V> {
@@ -9,12 +9,12 @@ public class MyHashMap<K, V> {
 		this.numBuckets = 10;
 		this.myBucketArray = new  ArrayList<>(numBuckets);
 		//Create Empty Buckets LinkedList
-
+		
 		for(int i = 0; i < numBuckets; i++)
 			this.myBucketArray.add(null);
-
+		
 	}
-
+	
 	private int getBucketIndex(K key) {
 		int hashCode = Math.abs(key.hashCode()); 
 		int index = hashCode % numBuckets;
@@ -23,10 +23,10 @@ public class MyHashMap<K, V> {
 
 	public V get(K key) {
 		int index = this.getBucketIndex(key);
-		MyLinkedList<K> myList = this.myBucketArray.get(index);
-		if (myList == null)
+		MyLinkedList<K> myLinkedList = this.myBucketArray.get(index);
+		if (myLinkedList == null)
 			return null;
-		MyMapNode<K, V> myMapNode = (MyMapNode<K, V>) myList.search(key);
+		MyMapNode<K, V> myMapNode = (MyMapNode<K, V>)myLinkedList.search(key);
 		return (myMapNode == null) ? null : myMapNode.getValue();
 	}
 
@@ -45,7 +45,15 @@ public class MyHashMap<K, V> {
 			myMapNode.setValue(value);
 		}
 	}
-
+	
+	public void removeKey(K key) {
+		int index = this.getBucketIndex(key);
+		MyLinkedList<K> myLinkedList = this.myBucketArray.get(index);
+		MyMapNode<K, V> myMapNode = (MyMapNode<K, V>) myLinkedList.search(key);
+		myLinkedList.delete(key);
+		myBucketArray.remove(index);
+	}
+	
 	@Override
 	public String toString() {
 		return "MyHashMapNodes{" + myBucketArray+ '}';

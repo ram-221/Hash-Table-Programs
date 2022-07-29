@@ -1,4 +1,4 @@
-package ocm.bridgelab.hashtableprouc2;
+package com.bridgelab.hashtableprouc3;
 
 public class MyMapNode<K, V> implements INode<K> {
 	K key;

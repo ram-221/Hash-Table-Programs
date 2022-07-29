@@ -1,4 +1,4 @@
-package ocm.bridgelab.hashtableprouc2;
+package com.bridgelab.hashtableprouc3;
 
 public class MyLinkedList<K> {
 	public INode<K> head;
@@ -19,7 +19,20 @@ public class MyLinkedList<K> {
 		}
 		return null;
 	}
-	
+
+	public INode delete(K key) {
+		INode<K> currentNode = head;
+		INode<K> previous = null;
+		while (currentNode != null && currentNode.getNext() != null) {
+			previous = currentNode;
+			if (currentNode.getKey().equals(key)) {
+				previous.setNext(currentNode.getNext());
+			}
+			currentNode =currentNode.getNext();
+		}
+		return currentNode;
+	}
+
 	public void append(INode<K> currentNode) {
 		if (this.tail == null)
 			this.tail = currentNode;
@@ -33,7 +46,7 @@ public class MyLinkedList<K> {
 
 	@Override
 	public String toString() {
-			return "MyLinkedList [head=" + head + ", tail=" + tail + "]";
-		}
+		return "MyLinkedList [head=" + head + ", tail=" + tail + "]";
+	}
 
 }
